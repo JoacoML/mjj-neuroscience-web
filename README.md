@@ -8,7 +8,7 @@ i18n.js                     textos en inglés + fases del algoritmo
 main.js                     idioma, pestañas, animaciones, formulario
 styles.css                  estilos
 config.js                   URL de la plataforma, casilla y asunto del formulario
-vercel.json                 headers y cache para Vercel
+CNAME                       dominio para GitHub Pages
 assets/                     logo, video, póster y capturas
 ```
 
@@ -42,34 +42,38 @@ El envío lo hace [FormSubmit](https://formsubmit.co) (gratis, sin cuenta ni bac
 
 Para que no se pierdan entre otros correos, conviene un filtro en la casilla por asunto que contenga `[Pedido de demo]`.
 
-## Publicar
+## Publicar — GitHub Pages
 
-### 1. Repo en GitHub
+Repo: [JoacoML/mjj-neuroscience-web](https://github.com/JoacoML/mjj-neuroscience-web) (público). Usar **solo la cuenta JoacoML**.
+Cada push a `main` publica solo, en uno o dos minutos.
 
-```bash
-gh repo create mjj-neuroscience-web --private --source . --push
-```
+### 1. Activar Pages (una vez)
 
-### 2. Hosting en Vercel (recomendado: ya lo usan para la plataforma)
+GitHub → repo → **Settings → Pages**:
 
-1. vercel.com → *Add New Project* → importar `mjj-neuroscience-web`. Framework: **Other**. Sin build command; output: raíz.
-2. Project → Settings → Domains → agregar `mjjneuroscience.com` y `www.mjjneuroscience.com`.
-3. Cada push a `main` publica solo.
+- *Source*: **Deploy from a branch** → `main` / `/ (root)` → Save.
+- *Custom domain*: ya lo toma del archivo `CNAME` (`mjjneuroscience.com`). Si no aparece, escribirlo y guardar.
+- Cuando el DNS verifique, tildar **Enforce HTTPS**. El certificado puede tardar hasta un día.
 
-### 3. DNS en Squarespace
+### 2. DNS en Squarespace
 
-Squarespace → Domains → `mjjneuroscience.com` → **DNS** → *Custom records*. Borrar los registros por defecto de Squarespace que apunten al dominio raíz o `www`, y agregar:
+Squarespace → Domains → `mjjneuroscience.com` → **DNS** → *Custom records*. Borrar los registros por defecto de Squarespace para `@` y `www` (los de *Squarespace Defaults*), y agregar:
 
-| Host | Tipo  | Valor                  |
-|------|-------|------------------------|
-| `@`  | A     | `76.76.21.21`          |
-| `www`| CNAME | `cname.vercel-dns.com` |
+| Host  | Tipo  | Valor               |
+|-------|-------|---------------------|
+| `@`   | A     | `185.199.108.153`   |
+| `@`   | A     | `185.199.109.153`   |
+| `@`   | A     | `185.199.110.153`   |
+| `@`   | A     | `185.199.111.153`   |
+| `@`   | AAAA  | `2606:50c0:8000::153` |
+| `@`   | AAAA  | `2606:50c0:8001::153` |
+| `@`   | AAAA  | `2606:50c0:8002::153` |
+| `@`   | AAAA  | `2606:50c0:8003::153` |
+| `www` | CNAME | `joacoml.github.io` |
 
-Usá los valores que muestre Vercel en Domains si difieren. La propagación tarda de minutos a unas horas; Vercel emite el certificado HTTPS solo.
+`www.mjjneuroscience.com` redirige solo a `mjjneuroscience.com`. La propagación tarda de minutos a unas horas.
 
-### Alternativa: GitHub Pages
-
-Settings → Pages → *Deploy from branch* `main` / root, dominio personalizado `www.mjjneuroscience.com`. En Squarespace: cuatro registros `A` para `@` (`185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`) y `CNAME` `www` → `<usuario>.github.io`.
+Opcional, recomendado: GitHub → foto de perfil → **Settings → Pages → Add a domain** → `mjjneuroscience.com`, y agregar en Squarespace el registro TXT que indica. Verifica el dominio a nombre de JoacoML y evita que otra cuenta lo pueda usar.
 
 ## Video
 
