@@ -7,8 +7,7 @@ index.html                  contenido en español (fuente de verdad)
 i18n.js                     textos en inglés + fases del algoritmo
 main.js                     idioma, pestañas, animaciones, formulario
 styles.css                  estilos
-config.js                   URL de la plataforma, email y destino del formulario
-google-apps-script.gs       script que guarda las solicitudes en Google Sheets
+config.js                   URL de la plataforma, casilla y asunto del formulario
 vercel.json                 headers y cache para Vercel
 assets/                     logo, video, póster y capturas
 ```
@@ -26,19 +25,22 @@ Idioma: se elige solo según el navegador; se puede forzar con `?lang=en` o `?la
 - Español: directamente en `index.html` (atributos `data-i18n`).
 - Inglés: la misma clave en `i18n.js`.
 
-## Formulario de demo — Google Sheets (gratis)
+## Formulario de demo — llega por mail
 
-El formulario es propio (mantiene el diseño) y cada solicitud se agrega como fila en una Google Sheet. Mientras `googleSheetsEndpoint` esté vacío, el botón abre el mail del visitante con los datos cargados.
+Cada solicitud se envía a **jjmartin@mjjneuroscience.com** con el asunto
+`[Pedido de demo] Web MJJ Neuroscience — <Institución> (<Nombre>)`, con los datos en una tabla.
+Responder el mail le contesta directo a quien pidió la demo.
 
-1. Crear una Google Sheet nueva (ej. "Solicitudes de demo — MJJ") con la cuenta de Google del equipo.
-2. En la planilla: **Extensiones → Apps Script**. Borrar el contenido y pegar `google-apps-script.gs`. Opcional: completar `NOTIFY_EMAIL` para recibir un mail por cada solicitud.
-3. **Implementar → Nueva implementación** → tipo **Aplicación web**.
-   - Ejecutar como: **Yo**.
-   - Quién tiene acceso: **Cualquier usuario** (el formulario es público; el script solo agrega filas, no deja leer nada).
-4. Autorizar los permisos que pide Google y copiar la URL que termina en `/exec`.
-5. Pegarla en `config.js` → `googleSheetsEndpoint`, commitear y pushear.
+El envío lo hace [FormSubmit](https://formsubmit.co) (gratis, sin cuenta ni backend). Casilla y asunto se cambian en `config.js`.
 
-Las solicitudes aparecen en la pestaña **Solicitudes** con columna **Estado** (`nuevo`) para seguir el contacto. Si cambiás el script, hay que hacer **Implementar → Administrar implementaciones → Editar → Nueva versión** para que tome los cambios (la URL no cambia).
+**Activación (una sola vez):**
+
+1. Con el sitio publicado (o en local), enviar una solicitud de prueba.
+2. Llega a la casilla un mail de FormSubmit "Action Required: Activate Form". Tocar **Activate Form**. Revisar spam si no aparece.
+3. Desde ahí, cada envío llega directo. Esa primera solicitud de prueba no se entrega.
+4. Opcional: el mail de activación trae un alias aleatorio (ej. `a1b2c3...`). Ponerlo en `leadInbox` en lugar del mail para que la dirección no quede visible en el código del sitio.
+
+Para que no se pierdan entre otros correos, conviene un filtro en la casilla por asunto que contenga `[Pedido de demo]`.
 
 ## Publicar
 

@@ -130,22 +130,22 @@
     status.dataset.kind = kind || '';
   }
 
+  // Envía la solicitud por mail a través de FormSubmit (https://formsubmit.co), sin backend propio.
   async function sendLead(lead) {
-    if (cfg.googleSheetsEndpoint) {
-      // text/plain evita el preflight CORS, que Apps Script no responde.
-      const res = await fetch(cfg.googleSheetsEndpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(lead),
-      });
-      const out = await res.json().catch(() => ({}));
-      if (!res.ok || !out.ok) throw new Error(`sheets ${res.status} ${out.error || ''}`);
-      return 'form.ok';
-    }
-    // Sin backend configurado: armamos un mail con los datos.
-    const body = Object.entries(lead).map(([k, v]) => `${k}: ${v ?? ''}`).join('\n');
-    location.href = `mailto:${cfg.contactEmail}?subject=${encodeURIComponent('Solicitud de demo')}&body=${encodeURIComponent(body)}`;
-    return 'form.mail';
+    const subject = `${cfg.leadSubject} — ${lead['Institución']} (${lead['Nombre']})`;
+    const res = await fetch(`https://formsubmit.co/ajax/${cfg.leadInbox}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        _subject: subject,
+        _template: 'table',
+        _captcha: 'false',
+        _replyto: lead.Email,
+        ...lead,
+      }),
+    });
+    const out = await res.json().catch(() => ({}));
+    if (!res.ok || String(out.success) !== 'true') throw new Error(`formsubmit ${res.status} ${out.message || ''}`);
   }
 
   form.addEventListener('submit', async (e) => {
@@ -158,23 +158,27 @@
       $(':invalid', form)?.focus();
       return;
     }
+    // Claves en español: son los rótulos que se leen en el mail.
+    const field = (name) => String(data.get(name) || '').trim() || '—';
+    const roleOption = form.elements.role.selectedOptions[0];
     const lead = {
-      name: String(data.get('name')).trim(),
-      email: String(data.get('email')).trim(),
-      organization: String(data.get('organization')).trim(),
-      role: String(data.get('role')),
-      country: String(data.get('country') || '').trim() || null,
-      phone: String(data.get('phone') || '').trim() || null,
-      message: String(data.get('message') || '').trim() || null,
-      lang,
-      source: location.hostname || 'local',
+      Nombre: field('name'),
+      Email: field('email'),
+      'Institución': field('organization'),
+      Rol: ES[roleOption.dataset.i18n] || roleOption.value,
+      'País': field('country'),
+      'Teléfono': field('phone'),
+      Mensaje: field('message'),
+      Idioma: lang.toUpperCase(),
+      Origen: location.hostname || 'local',
     };
     submitBtn.disabled = true;
     setStatus('form.sending');
     try {
-      const key = await sendLead(lead);
-      setStatus(key, 'ok');
-      if (key === 'form.ok') { form.reset(); form.classList.remove('touched'); }
+      await sendLead(lead);
+      setStatus('form.ok', 'ok');
+      form.reset();
+      form.classList.remove('touched');
     } catch (err) {
       console.error(err);
       setStatus('form.error', 'error');

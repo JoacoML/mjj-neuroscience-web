@@ -93,7 +93,6 @@ window.I18N_EN = {
   'form.ok': 'Thanks! We received your request and will contact you shortly.',
   'form.invalid': 'Please complete the required fields.',
   'form.error': 'We couldn’t send your request. Please try again or email us.',
-  'form.mail': 'Your email app will open with the request ready to send.',
 
   'footer.legal': 'Clinical decision support tool. It does not replace the judgment of the healthcare professional.',
 };
@@ -104,7 +103,6 @@ window.I18N_ES_EXTRA = {
   'form.ok': '¡Gracias! Recibimos tu solicitud y te contactamos a la brevedad.',
   'form.invalid': 'Completá los campos obligatorios.',
   'form.error': 'No pudimos enviar la solicitud. Probá de nuevo o escribinos por mail.',
-  'form.mail': 'Se va a abrir tu cliente de mail con la solicitud lista para enviar.',
   'tour.c2': 'Un flujo guiado que pregunta solo lo necesario en cada paso y recuerda cada respuesta.',
   'tour.c3': 'Recomendaciones con su clase de evidencia y los ensayos que las respaldan, justo donde decidís.',
   'tour.c4': 'La planilla se precarga con las decisiones del asistente: tiempos, NIHSS, tratamiento y destino.',
