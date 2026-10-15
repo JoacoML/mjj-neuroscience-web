@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MJJ Neuroscience — Decisión clínica guiada para el ACV agudo</title>
+  <meta name="description" content="Algoritmo de manejo inicial del stroke agudo basado en la guía AHA/ASA 2026: decisión clínica guiada, registro estructurado e indicadores de calidad en una sola herramienta." />
+  <meta property="og:title" content="MJJ Neuroscience — Cada minuto cuenta" />
+  <meta property="og:description" content="Decisión clínica guiada, registro estructurado e indicadores de calidad para unidades de stroke." />
+  <meta property="og:image" content="https://mjjneuroscience.com/assets/poster.jpg" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="assets/favicon-32x32.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="config.js"></script>
+  <script src="i18n.js" defer></script>
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <header class="nav" id="top">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="MJJ Neuroscience">
+        <img src="assets/logo.png" alt="" width="32" height="32" />
+        <span>MJJ <b>Neuroscience</b></span>
+      </a>
+      <nav class="nav-links" aria-label="Principal">
+        <a href="#solucion" data-i18n="nav.solution">Solución</a>
+        <a href="#demo-video" data-i18n="nav.video">Demo</a>
+        <a href="#fases" data-i18n="nav.phases">Algoritmo</a>
+        <a href="#mision" data-i18n="nav.mission">Misión</a>
+      </nav>
+      <div class="nav-actions">
+        <div class="lang" role="group" aria-label="Idioma / Language">
+          <button type="button" data-lang="es" aria-pressed="true">ES</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn btn-ghost hide-sm js-platform" href="https://jjm-acv-web.vercel.app/" target="_blank" rel="noopener" data-i18n="cta.platform">Ir a la plataforma</a>
+        <a class="btn btn-dark" href="#solicitar-demo" data-i18n="cta.demo">Solicitar demo</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="pill reveal"><span class="dot"></span><span data-i18n="hero.eyebrow">Basado en la guía AHA/ASA 2026</span></p>
+          <h1 class="reveal" data-i18n-html="hero.title">Cada minuto cuenta.<br />Decidí con la guía <em>al pie de la cama.</em></h1>
+          <p class="lead reveal" data-i18n="hero.lead">Algoritmo de manejo inicial del stroke agudo: decisión clínica guiada, registro estructurado e indicadores de calidad en una sola herramienta para tu unidad de ACV.</p>
+          <div class="hero-ctas reveal">
+            <a class="btn btn-primary btn-lg" href="#solicitar-demo" data-i18n="cta.demo">Solicitar demo</a>
+            <a class="btn btn-ghost btn-lg js-platform" href="https://jjm-acv-web.vercel.app/" target="_blank" rel="noopener"><span data-i18n="cta.platform">Ir a la plataforma</span> <span aria-hidden="true">→</span></a>
+          </div>
+          <p class="hero-note reveal" data-i18n="hero.note">Para unidades de stroke, emergencias y equipos de neurología.</p>
+        </div>
+
+        <div class="hero-visual reveal" aria-hidden="true">
+          <svg class="synapse" viewBox="0 0 600 520" fill="none">
+            <path class="syn-path" d="M40 420 C 160 380, 180 220, 300 210 S 470 120, 560 60" />
+            <path class="syn-path p2" d="M60 120 C 180 160, 220 320, 340 330 S 500 420, 580 470" />
+            <circle class="syn-node" cx="300" cy="210" r="7" />
+            <circle class="syn-node n2" cx="340" cy="330" r="7" />
+            <circle class="syn-node n3" cx="560" cy="60" r="5" />
+          </svg>
+          <figure class="browser">
+            <div class="browser-bar"><i></i><i></i><i></i><span>jjm-acv-web.vercel.app</span></div>
+            <img src="assets/shot-recomendacion.jpg" alt="" width="1330" height="804" />
+          </figure>
+          <div class="float-card fc-timer">
+            <span class="fc-label" data-i18n="hero.card.code">Código ACV activo</span>
+            <strong class="mono" id="stroke-timer">00:00</strong>
+          </div>
+          <div class="float-card fc-class">
+            <span class="badge badge-green">Clase I</span>
+            <span data-i18n="hero.card.class">Recomendación con nivel de evidencia</span>
+          </div>
+          <div class="float-card fc-kpi">
+            <span class="fc-label" data-i18n="hero.card.kpi">Puerta–aguja</span>
+            <div class="spark"><i style="--h:60%"></i><i style="--h:48%"></i><i style="--h:52%"></i><i style="--h:38%"></i><i style="--h:30%"></i></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIME IS BRAIN -->
+    <section class="brain">
+      <div class="wrap brain-inner">
+        <p class="brain-count"><span class="mono" id="neuron-count">0</span></p>
+        <p class="brain-copy" data-i18n="brain.copy">neuronas se habrían perdido en un ACV isquémico sin tratar desde que abriste esta página.</p>
+        <p class="brain-src" data-i18n="brain.src">≈ 1,9 millones por minuto · Saver JL, “Time is brain — quantified”, Stroke 2006.</p>
+      </div>
+    </section>
+
+    <!-- PILLARS -->
+    <section class="section" id="solucion">
+      <div class="wrap">
+        <p class="kicker reveal" data-i18n="pillars.kicker">La solución</p>
+        <h2 class="reveal" data-i18n-html="pillars.title">Decisión, registro y calidad<br /><em>en una sola herramienta.</em></h2>
+        <div class="pillars">
+          <article class="pillar reveal">
+            <div class="pillar-icon blue"><svg viewBox="0 0 24 24"><path d="M4 12h4l2-6 4 12 2-6h4" /></svg></div>
+            <h3 data-i18n="pillars.p1.title">Decisión clínica guiada</h3>
+            <p data-i18n="pillars.p1.body">Un asistente paso a paso, desde la sospecha hasta la conducta, con cada recomendación marcada por su clase de evidencia AHA/ASA 2026.</p>
+          </article>
+          <article class="pillar reveal">
+            <div class="pillar-icon red"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2" /><path d="M9 8h6M9 12h6M9 16h3" /></svg></div>
+            <h3 data-i18n="pillars.p2.title">Registro estructurado</h3>
+            <p data-i18n="pillars.p2.body">La planilla del paciente se completa sola con las decisiones del asistente: tiempos, escalas, tratamientos y episodios, sin duplicar trabajo.</p>
+          </article>
+          <article class="pillar reveal">
+            <div class="pillar-icon green"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></svg></div>
+            <h3 data-i18n="pillars.p3.title">Indicadores de calidad</h3>
+            <p data-i18n="pillars.p3.body">Tiempos puerta–aguja y puerta–punción medidos automáticamente e indicadores listos para auditoría de la Unidad de Stroke.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCT TABS -->
+    <section class="section section-soft">
+      <div class="wrap">
+        <p class="kicker reveal" data-i18n="tour.kicker">Recorrido</p>
+        <h2 class="reveal" data-i18n-html="tour.title">Todo lo que tu equipo necesita<br /><em>en la primera hora.</em></h2>
+        <div class="tabs reveal" role="tablist" aria-label="Producto">
+          <button role="tab" aria-selected="true" data-shot="shot-algoritmo" data-i18n="tour.t1">Algoritmo por fases</button>
+          <button role="tab" aria-selected="false" data-shot="shot-asistente" data-i18n="tour.t2">Asistente de decisión</button>
+          <button role="tab" aria-selected="false" data-shot="shot-recomendacion" data-i18n="tour.t3">Recomendaciones</button>
+          <button role="tab" aria-selected="false" data-shot="shot-planilla" data-i18n="tour.t4">Planilla de registro</button>
+          <button role="tab" aria-selected="false" data-shot="shot-calidad" data-i18n="tour.t5">Calidad</button>
+        </div>
+        <div class="tour reveal">
+          <p class="tour-caption" id="tour-caption" data-i18n="tour.c1">Ocho fases, de la escena prehospitalaria a la prevención secundaria, con metas de tiempo y pasos clave.</p>
+          <figure class="browser browser-lg">
+            <div class="browser-bar"><i></i><i></i><i></i><span>jjm-acv-web.vercel.app</span></div>
+            <img id="tour-img" src="assets/shot-algoritmo.jpg" alt="Algoritmo por fases" width="1330" height="804" loading="lazy" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section class="section section-dark" id="demo-video">
+      <div class="wrap">
+        <p class="kicker kicker-light reveal" data-i18n="video.kicker">Mirá la demo</p>
+        <h2 class="reveal" data-i18n-html="video.title">Del Código ACV a la auditoría,<br /><em>en menos de tres minutos.</em></h2>
+        <div class="video-frame reveal">
+          <video id="demo-player" controls playsinline preload="metadata" poster="assets/poster.jpg">
+            <source src="assets/demo-acv-es.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <p class="video-note reveal" data-i18n="video.note">Video narrado en español.</p>
+      </div>
+    </section>
+
+    <!-- PHASES -->
+    <section class="section" id="fases">
+      <div class="wrap">
+        <p class="kicker reveal" data-i18n="phases.kicker">El algoritmo</p>
+        <h2 class="reveal" data-i18n-html="phases.title">Ocho fases.<br /><em>Una sola línea de tiempo.</em></h2>
+        <ol class="phases" id="phases"></ol>
+      </div>
+    </section>
+
+    <!-- AUDIENCE -->
+    <section class="section section-soft">
+      <div class="wrap">
+        <p class="kicker reveal" data-i18n="who.kicker">Para quién</p>
+        <h2 class="reveal" data-i18n-html="who.title">Pensado para quienes <em>no tienen tiempo que perder.</em></h2>
+        <div class="who">
+          <article class="who-card reveal">
+            <h3 data-i18n="who.c1.title">Emergencias y guardia</h3>
+            <p data-i18n="who.c1.body">Activación del código, NIHSS, contraindicaciones y criterios de trombólisis a un toque.</p>
+          </article>
+          <article class="who-card reveal">
+            <h3 data-i18n="who.c2.title">Neurología y unidad de stroke</h3>
+            <p data-i18n="who.c2.body">Indicaciones de trombectomía 2026, cuidados post-tratamiento y prevención secundaria con su evidencia.</p>
+          </article>
+          <article class="who-card reveal">
+            <h3 data-i18n="who.c3.title">Dirección y calidad</h3>
+            <p data-i18n="who.c3.body">Tiempos e indicadores por sede, listos para auditar, con los datos de cada organización aislados.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION -->
+    <section class="section mission" id="mision">
+      <div class="wrap mission-inner">
+        <p class="kicker reveal" data-i18n="mission.kicker">Nuestra misión</p>
+        <blockquote class="reveal" data-i18n-html="mission.quote">Que cada paciente con ACV reciba <em>la mejor decisión posible, en el menor tiempo posible</em>, sin importar dónde llegue.</blockquote>
+        <div class="mission-grid">
+          <div class="reveal">
+            <h3 data-i18n="mission.purpose.title">Propósito</h3>
+            <p data-i18n="mission.purpose.body">Acercar la evidencia más actual al momento exacto en que se toma la decisión, para que la guía deje de ser un PDF y se convierta en acción.</p>
+          </div>
+          <div class="reveal">
+            <h3 data-i18n="mission.how.title">Cómo lo hacemos</h3>
+            <p data-i18n="mission.how.body">Diseñamos junto a neurólogos y equipos de stroke herramientas simples, rápidas y medibles, que se adaptan al flujo real de cada hospital.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEMO FORM -->
+    <section class="section section-soft" id="solicitar-demo">
+      <div class="wrap form-grid">
+        <div class="form-copy">
+          <p class="kicker reveal" data-i18n="form.kicker">Solicitar demo</p>
+          <h2 class="reveal" data-i18n-html="form.title">Llevalo <em>a tu unidad.</em></h2>
+          <p class="lead reveal" data-i18n="form.lead">Contanos sobre tu equipo y coordinamos una demostración guiada con casos reales de uso.</p>
+          <ul class="checks reveal">
+            <li data-i18n="form.b1">Recorrido guiado por el algoritmo, el registro y Calidad</li>
+            <li data-i18n="form.b2">Configuración para tu organización y tus sedes</li>
+            <li data-i18n="form.b3">Acceso de prueba para tu equipo</li>
+          </ul>
+          <p class="reveal"><a class="link-arrow js-platform" href="https://jjm-acv-web.vercel.app/" target="_blank" rel="noopener"><span data-i18n="form.already">¿Ya tenés cuenta? Ir a la plataforma</span> →</a></p>
+        </div>
+
+        <form class="card-form reveal" id="demo-form" novalidate>
+          <div class="field-row">
+            <label><span data-i18n="form.name">Nombre y apellido</span>
+              <input name="name" autocomplete="name" required maxlength="120" /></label>
+            <label><span data-i18n="form.email">Email institucional</span>
+              <input name="email" type="email" autocomplete="email" required maxlength="160" /></label>
+          </div>
+          <div class="field-row">
+            <label><span data-i18n="form.org">Institución</span>
+              <input name="organization" autocomplete="organization" required maxlength="160" /></label>
+            <label><span data-i18n="form.role">Rol</span>
+              <select name="role" required>
+                <option value="" data-i18n="form.role.pick">Seleccioná</option>
+                <option value="neurologia" data-i18n="form.role.neuro">Neurología</option>
+                <option value="emergencias" data-i18n="form.role.er">Emergencias</option>
+                <option value="direccion" data-i18n="form.role.dir">Dirección médica / Calidad</option>
+                <option value="enfermeria" data-i18n="form.role.nurse">Enfermería</option>
+                <option value="otro" data-i18n="form.role.other">Otro</option>
+              </select></label>
+          </div>
+          <div class="field-row">
+            <label><span data-i18n="form.country">País</span>
+              <input name="country" autocomplete="country-name" maxlength="80" /></label>
+            <label><span data-i18n="form.phone">Teléfono (opcional)</span>
+              <input name="phone" type="tel" autocomplete="tel" maxlength="40" /></label>
+          </div>
+          <label><span data-i18n="form.message">¿Qué te gustaría resolver? (opcional)</span>
+            <textarea name="message" rows="3" maxlength="1500"></textarea></label>
+          <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off" /></label>
+          <label class="consent"><input type="checkbox" name="consent" required />
+            <span data-i18n="form.consent">Acepto que me contacten para coordinar la demo.</span></label>
+          <button class="btn btn-primary btn-lg btn-block" type="submit" data-i18n="form.submit">Solicitar demo</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <a class="brand" href="#top"><img src="assets/logo.png" alt="" width="28" height="28" /><span>MJJ <b>Neuroscience</b></span></a>
+      <p class="footer-legal" data-i18n="footer.legal">Herramienta de apoyo a la decisión clínica. No reemplaza el juicio del profesional de la salud.</p>
+      <div class="footer-links">
+        <a class="js-platform" href="https://jjm-acv-web.vercel.app/" target="_blank" rel="noopener" data-i18n="cta.platform">Ir a la plataforma</a>
+        <a class="js-email" href="mailto:contacto@mjjneuroscience.com">contacto@mjjneuroscience.com</a>
+        <span>© <span id="year">2026</span> MJJ Neuroscience</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
