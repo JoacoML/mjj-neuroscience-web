@@ -67,7 +67,7 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var
 }
 .nav.scrolled { border-color: var(--line); }
 .nav-inner { display: flex; align-items: center; gap: 24px; height: 64px; }
-.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-size: 17px; letter-spacing: -0.01em; }
+.brand { display: flex; align-items: center; gap: 10px; white-space: nowrap; text-decoration: none; font-size: 17px; letter-spacing: -0.01em; }
 .brand b { font-weight: 700; }
 .nav-links { display: flex; gap: 22px; margin-right: auto; }
 .nav-links a { text-decoration: none; color: var(--ink-2); font-size: 15px; font-weight: 500; }
