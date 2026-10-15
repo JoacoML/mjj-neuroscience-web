@@ -12,7 +12,7 @@ window.I18N_EN = {
   'cta.demo': 'Request a demo',
 
   'hero.eyebrow': 'Based on the 2026 AHA/ASA guideline',
-  'hero.title': 'Every minute counts.<br />Decide with the guideline <em>at the bedside.</em>',
+  'hero.title': 'Every minute counts.<br />Decide with the guideline <em>always at hand.</em>',
   'hero.lead': 'An initial management algorithm for acute stroke: guided clinical decisions, structured records, and quality indicators in a single tool for your stroke unit.',
   'hero.note': 'For stroke units, emergency departments, and neurology teams.',
   'hero.card.code': 'Stroke code active',
